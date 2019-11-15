@@ -1,3 +1,4 @@
+// noinspection JSUnusedLocalSymbols,JSUnresolvedVariable
 (function( $ ) {
 	'use strict';
 

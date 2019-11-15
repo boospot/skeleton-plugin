@@ -1,4 +1,5 @@
 <?php
+/** @noinspection PhpUnused */
 
 /**
  * The plugin bootstrap file
@@ -42,15 +43,36 @@ define( 'SKELETON_VERSION', '1.0.0' );
 
 define( 'SKELETON_PLUGIN_NAME', 'skeleton' );
 
+/**
+ * Plugin base name.
+ * used to locate plugin resources primarily code files
+ * Start at version 1.0.0
+ */
+/** @noinspection PhpUnused */
 define( 'SKELETON_PLUGIN_BASE_NAME', basename( __FILE__ ) );
 
-/* Plugin Directory Path */
+
+
+/**
+ * Plugin base dir path.
+ * used to locate plugin resources primarily code files
+ * Start at version 1.0.0
+ */
+/** @noinspection PhpUnused */
 define( 'SKELETON_DIR_PATH', plugin_dir_path( __FILE__ ) );
+
+/**
+ * Plugin url to access its resources through browser
+ * used to access assets images/css/js files
+ * Start at version 1.0.0
+ */
+/** @noinspection PhpUnused */
+define( 'SKELETON_URL_PATH', plugin_dir_url( __FILE__ ) );
 
 /**
  * Composer Auto Loader
  */
-require plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
+require 'vendor/autoload.php';
 
 /**
  * The code that runs during plugin activation.

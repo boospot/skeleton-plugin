@@ -24,7 +24,8 @@ namespace Skeleton;
  * @subpackage Skeleton/includes
  * @author     Rao <rao@booskills.com>
  */
-class i18n {
+class i18N {
+	/** @noinspection SpellCheckingInspection */
 
 
 	/**

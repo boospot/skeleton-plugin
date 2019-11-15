@@ -31,7 +31,7 @@ class Taxonomy {
 	 */
 	public function __construct() {
 
-//		self::$prefix = Globals::get_meta_prefix();
+
 
 	}
 

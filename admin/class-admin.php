@@ -23,9 +23,6 @@ namespace Skeleton;
  */
 class Admin {
 
-
-	protected static $prefix;
-
 	/**
 	 * The ID of this plugin.
 	 *
