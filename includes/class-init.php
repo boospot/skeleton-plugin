@@ -76,7 +76,7 @@ class Init {
 			$this->version = '1.0.0';
 		}
 		if ( defined( 'SKELETON_PLUGIN_NAME' ) ) {
-			$this->version = SKELETON_PLUGIN_NAME;
+			$this->plugin_name = SKELETON_PLUGIN_NAME;
 		} else {
 			$this->plugin_name = 'skeleton';
 		}
