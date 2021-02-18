@@ -22,7 +22,7 @@
  * @link       https://booskills.com/rao
  * @since      1.0.0
  *
- * @package    Skeleton
+ * @package    SkeletonPlugin
  */
 
 // If uninstall not called from WordPress, then exit.

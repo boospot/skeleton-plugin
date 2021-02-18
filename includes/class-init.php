@@ -1,6 +1,6 @@
 <?php
 
-namespace Skeleton;
+namespace SkeletonPlugin;
 /**
  * The file that defines the core plugin class
  *
@@ -10,8 +10,8 @@ namespace Skeleton;
  * @link       https://booskills.com/rao
  * @since      1.0.0
  *
- * @package    Skeleton
- * @subpackage Skeleton/includes
+ * @package    SkeletonPlugin
+ * @subpackage SkeletonPlugin/includes
  */
 
 /**
@@ -24,12 +24,20 @@ namespace Skeleton;
  * version of the plugin.
  *
  * @since      1.0.0
- * @package    Skeleton
- * @subpackage Skeleton/includes
+ * @package    SkeletonPlugin
+ * @subpackage SkeletonPlugin/includes
  * @author     Rao <rao@booskills.com>
  */
 class Init {
 
+	/**
+	 * The instance of this class
+	 *
+	 * @since    1.0.0
+	 * @access   protected
+	 * @var      object $instance Maintains and registers all hooks for the plugin.
+	 */
+	protected static $instance;
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
 	 * the plugin.
@@ -39,7 +47,6 @@ class Init {
 	 * @var      Loader $loader Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
-
 	/**
 	 * The unique identifier of this plugin.
 	 *
@@ -48,7 +55,6 @@ class Init {
 	 * @var      string $plugin_name The string used to uniquely identify this plugin.
 	 */
 	protected $plugin_name;
-
 	/**
 	 * The current version of the plugin.
 	 *
@@ -70,25 +76,26 @@ class Init {
 	public function __construct() {
 
 
-		if ( defined( 'SKELETON_VERSION' ) ) {
-			$this->version = SKELETON_VERSION;
+		if ( defined( 'SKELETON_PLUGIN_VERSION' ) ) {
+			$this->version = SKELETON_PLUGIN_VERSION;
 		} else {
 			$this->version = '1.0.0';
 		}
 		if ( defined( 'SKELETON_PLUGIN_NAME' ) ) {
 			$this->plugin_name = SKELETON_PLUGIN_NAME;
 		} else {
-			$this->plugin_name = 'skeleton';
+			$this->plugin_name = 'skeleton-plugin';
 		}
 
-
+		// Load Dependencies
 		$this->load_dependencies();
+
 		$this->set_locale();
 		$this->define_admin_hooks();
-		$this->define_public_hooks();
+		$this->define_front_hooks();
 		$this->define_taxonomy_hooks();
 
-		do_action( 'skeleton_init_construct' );
+		do_action( 'skeleton_plugin_init_construct' );
 
 	}
 
@@ -183,16 +190,18 @@ class Init {
 	 * @since    1.0.0
 	 * @access   private
 	 */
-	private function define_public_hooks() {
+	private function define_front_hooks() {
 
 		if ( is_admin() ) {
 			return null;
 		}
 
-		$plugin_public = new Front( $this->get_plugin_name(), $this->get_version() );
+		$plugin_front = new Front( $this->get_plugin_name(), $this->get_version() );
 
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_front, 'enqueue_styles' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_front, 'enqueue_scripts' );
+
+//		var_dump( $this->front );
 
 	}
 
@@ -206,6 +215,20 @@ class Init {
 
 //		$plugin_taxonomies = new Taxonomy();
 
+
+	}
+
+	/**
+	 * get the instance of the main plugin class
+	 */
+	public static function get_instance() {
+
+		if ( ! self::$instance ) {
+			self::$instance = new self();
+			self::$instance->run();
+		}
+
+		return self::$instance;
 
 	}
 

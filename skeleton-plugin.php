@@ -11,10 +11,10 @@
  *
  * @link              https://booskills.com/rao
  * @since             1.0.0
- * @package           Skeleton
+ * @package           SkeletonPlugin
  *
  * @wordpress-plugin
- * Plugin Name:       Skeleton
+ * Plugin Name:       Skeleton Plugin
  * Plugin URI:        https://boospot.com/
  * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
  * Requires PHP:      7.0
@@ -25,7 +25,7 @@
  * Author URI:        https://booskills.com/rao
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       skeleton
+ * Text Domain:       skeleton-plugin
  * Domain Path:       /languages
  */
 
@@ -39,9 +39,9 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'SKELETON_VERSION', '1.0.0' );
+define( 'SKELETON_PLUGIN_VERSION', '1.0.0' );
 
-define( 'SKELETON_PLUGIN_NAME', 'skeleton' );
+define( 'SKELETON_PLUGIN_NAME', 'skeleton-plugin' );
 
 /**
  * Plugin base name.
@@ -52,14 +52,13 @@ define( 'SKELETON_PLUGIN_NAME', 'skeleton' );
 define( 'SKELETON_PLUGIN_BASE_NAME', basename( __FILE__ ) );
 
 
-
 /**
  * Plugin base dir path.
  * used to locate plugin resources primarily code files
  * Start at version 1.0.0
  */
 /** @noinspection PhpUnused */
-define( 'SKELETON_DIR_PATH', plugin_dir_path( __FILE__ ) );
+define( 'SKELETON_PLUGIN_DIR_PATH', plugin_dir_path( __FILE__ ) );
 
 /**
  * Plugin url to access its resources through browser
@@ -67,35 +66,33 @@ define( 'SKELETON_DIR_PATH', plugin_dir_path( __FILE__ ) );
  * Start at version 1.0.0
  */
 /** @noinspection PhpUnused */
-define( 'SKELETON_URL_PATH', plugin_dir_url( __FILE__ ) );
+define( 'SKELETON_PLUGIN_URL_PATH', plugin_dir_url( __FILE__ ) );
 
 /**
  * Composer Auto Loader
  */
-require 'vendor/autoload.php';
+require_once 'vendor/autoload.php';
+
 
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-skeleton-activator.php
  */
-function skeleton_activate() {
-	Skeleton\Activator::activate();
+function skeleton_plugin_activate() {
+	SkeletonPlugin\Activator::activate();
+
 }
 
+register_activation_hook( __FILE__, 'skeleton_plugin_activate' );
 /**
  * The code that runs during plugin deactivation.
  * This action is documented in includes/class-skeleton-deactivator.php
  */
-function skeleton_deactivate() {
-	Skeleton\Deactivator::deactivate();
+function skeleton_plugin_deactivate() {
+	SkeletonPlugin\Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'skeleton_activate' );
-register_deactivation_hook( __FILE__, 'skeleton_deactivate' );
-/**
- * The core plugin class that is used to define internationalization,
- * admin-specific hooks, and public-facing site hooks.
- */
+register_deactivation_hook( __FILE__, 'skeleton_plugin_deactivate' );
 
 /**
  * Begins execution of the plugin.
@@ -106,11 +103,10 @@ register_deactivation_hook( __FILE__, 'skeleton_deactivate' );
  *
  * @since    1.0.0
  */
-function run_skeleton() {
+function skeleton_plugin() {
 
-	$plugin = new Skeleton\Init();
-	$plugin->run();
+	return SkeletonPlugin\Init::get_instance();
 
 }
 
-run_skeleton();
+skeleton_plugin();
