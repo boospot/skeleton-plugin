@@ -17,7 +17,8 @@ Changes to be made:
     * @author For email: `rao@booskills.com => you@mail.com`
     * @link For Link: `https://booskills.com/rao => https://example.com/you`
     * Update Plugin Comment Block in main file `/skeleton-plugin.php`
+
 3. After Adding more files as you go, use composer to update autoload if you need to. You shall need to have composer
    installed on your computer. In Terminal in the plugin directory, run following:
     * `composer update`
- 
+ If you do not want to use composer, download latest version from releases of this repo. 
