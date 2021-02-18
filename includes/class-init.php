@@ -35,7 +35,7 @@ class Init {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      object $instance Maintains and registers all hooks for the plugin.
+	 * @var      object $instance The instance of the current class
 	 */
 	protected static $instance;
 	/**
